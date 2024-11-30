@@ -1,7 +1,13 @@
 import './App.css';
 import OpeningGame from "./Components/OpeningGame";
+import { useState } from 'react';
+import GamePage from "./Components/GamePage";
 
 function App() {
+    const [isGameStarted, setIsGameStarted] = useState(false);
+    const [userName, setUserName] = useState('');
+    const [difficulty, setDifficulty] = useState('');
+
   return (
       <div className="App">
           <head>
@@ -17,7 +23,16 @@ function App() {
                   integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
                   crossOrigin="anonymous"></script>
           </body>
-          <OpeningGame/>
+
+          {!isGameStarted ? (
+              <OpeningGame
+                  onStart={() => setIsGameStarted(true)}
+                  setUserName={setUserName}
+                  setDifficulty={setDifficulty}
+              />
+          ) : (
+              <GamePage userName={userName} difficulty={difficulty} />
+          )}
       </div>
   );
 }
