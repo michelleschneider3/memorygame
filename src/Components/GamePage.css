@@ -1,0 +1,27 @@
+.timer {
+    background: cornsilk;
+    color: palevioletred;
+    font-size: 30px;
+    text-align: center;
+    width: 100px;
+    height: 70px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+}
+
+.end-button {
+    font-size: 20px;
+    margin-top: 20px;
+    display: block;
+    width: 200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.intro {
+    text-align: center;
+}
+
