@@ -1,0 +1,33 @@
+
+.welcome {
+    font-family: monospace;
+}
+
+.opening-game {
+    text-align: center;
+    transform: scale(0.8);
+}
+
+.form-control::placeholder {
+    text-align: center;
+}
+
+.form-select {
+    margin-top: 20px;
+}
+
+.form-floating .form-control  {
+    width: 200px;
+    height: 100px;
+}
+
+.btn.btn-secondary.btn-lg {
+    margin-top: 20px;
+}
+
+
+
+
+
+
+
