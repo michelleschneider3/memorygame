@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './GamePage.css'
+import '../Styles/GamePage.css'
 
 function GamePage({ userName, difficulty }) {
     const [seconds, setSeconds] = useState(0);

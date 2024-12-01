@@ -1,4 +1,4 @@
-import './OpeningGame.css'
+import '../Styles/OpeningGame.css'
 
 function OpeningGame({ onStart, setUserName, setDifficulty }) {
 
