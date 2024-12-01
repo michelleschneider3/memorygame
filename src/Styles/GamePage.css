@@ -1,3 +1,22 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.game-page {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    background-color: #f2f2f2;
+}
+
+.game-info {
+    width: 300px;
+    padding: 20px;
+}
+
+
 .timer {
     background: cornsilk;
     color: palevioletred;
@@ -5,11 +24,11 @@
     text-align: center;
     width: 100px;
     height: 70px;
-    margin: 0 auto;
     display: flex;
     justify-content: center;
     align-items: center;
     border-radius: 10px;
+    margin: 20px auto 0;
 }
 
 .end-button {
@@ -25,3 +44,46 @@
     text-align: center;
 }
 
+.container {
+    flex-grow: 1; /* הקלפים יתפסו את כל המקום שנותר */
+    display: grid;
+    grid-template-columns: repeat(6, 1fr); /* יוצרים שישה תאים בעמודה */
+    gap: 1rem;
+    max-width: 960px;
+    margin: auto;
+    padding: 20px;
+}
+
+.cell div {
+    height: 105px;
+    border-radius: 4px;
+}
+
+.cell {
+    position: relative;
+}
+
+.front {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid #a6a6a6;
+    background-color: #f2f2f2;
+    /*transform: rotateY(90deg);*/
+}
+
+.back {
+    background-color: #333;
+}
+
+img {
+    height: 100px;
+    width: 100px;
+}
+
+.flip {
+    transform: rotateY(0deg);
+}
