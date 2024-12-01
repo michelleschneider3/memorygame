@@ -43,6 +43,15 @@ function GamePage({ userName, difficulty }) {
 
 
             // The game
+            <div className="container" >
+                <div className="cell">
+                    <div className="front" data-index="1"> </div>
+                </div>
+
+
+
+
+            </div>
 
 
             <button onClick={endGame} className="end-button">End Game</button>
