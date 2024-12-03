@@ -5,13 +5,16 @@ function GamePage({ userName, difficulty }) {
     const [seconds, setSeconds] = useState(0);
     const [isGameEnded, setIsGameEnded] = useState(false);
     const [cards, setCards] = useState([]);
+    const [flippedCards, setFlippedCards] = useState([]);
+    const [matchedCards, setMatchedCards] = useState([]);
+    const [score, setScore] = useState(0);
 
     const formatTime = (seconds) => {
         const minutes = Math.floor(seconds / 60);
         const remainingSeconds = seconds % 60;
         return `${minutes < 10 ? '0' : ''}${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
     };
-
+    
     useEffect(() => {
         if (!isGameEnded) {
             const timer = setInterval(() => setSeconds((prevSeconds) => prevSeconds + 1), 1000);
@@ -54,6 +57,37 @@ function GamePage({ userName, difficulty }) {
         setCards(createCards());
     }, [difficulty]);
 
+    const handleCardClick = (id) => {
+
+        if (flippedCards.includes(id) || matchedCards.includes(id)) return; // לא לעשות כלום אם הקלף כבר פתוח או תואם
+
+        if (flippedCards.length === 1) {
+            const firstCardId = flippedCards[0];
+
+            setFlippedCards((prev) => [...prev, id]);
+
+            const firstCard = cards.find((card) => card.id === firstCardId);
+            const secondCard = cards.find((card) => card.id === id);
+
+            if (firstCard.image === secondCard.image) {
+                setMatchedCards((prev) => [...prev, firstCardId, id]);
+                setScore((prevScore) => {
+                    const newScore = prevScore + 1;
+                    if (newScore === parseInt(difficulty) / 2) {
+                        setIsGameEnded(true);
+                    }
+                    return newScore;
+                });
+            } else {
+                setTimeout(() => {
+                    setFlippedCards([]);
+                }, 1000);
+            }
+        } else {
+            setFlippedCards([id]);
+        }
+    };
+
     const endGame = () => {
         setIsGameEnded(true);
     };
@@ -63,15 +97,21 @@ function GamePage({ userName, difficulty }) {
             <div className="game-info">
                 <div className="intro">
                     <h4>Hey, {userName}!</h4>
-                    <p>You selected difficulty level: {difficulty} cards</p>
+                    <p>score: {score}</p>
                 </div>
             </div>
 
-            <div className="container">
+            <div className={`container container-${difficulty === '30' ? '6' : '5'}`}>
                 {cards.map((card) => (
-                    <div key={card.id} className="cell">
-                        <div className="front">
-                            <img src={card.image} alt="card front" />
+                    <div
+                        key={card.id}
+                        className="cell"
+                        onClick={() => handleCardClick(card.id)}
+                    >
+                        <div
+                            className={`front ${flippedCards.includes(card.id) || matchedCards.includes(card.id) ? 'flip' : ''}`}
+                        >
+                            <img src={card.image} alt="card front"/>
                         </div>
                         <div className="back"></div>
                     </div>

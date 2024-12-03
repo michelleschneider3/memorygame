@@ -45,13 +45,19 @@
 }
 
 .container {
-    flex-grow: 1; /* הקלפים יתפסו את כל המקום שנותר */
     display: grid;
-    grid-template-columns: repeat(6, 1fr); /* יוצרים שישה תאים בעמודה */
     gap: 1rem;
     max-width: 960px;
     margin: auto;
     padding: 20px;
+}
+
+.container-5 {
+    grid-template-columns: repeat(5, 1fr);
+}
+
+.container-6 {
+    grid-template-columns: repeat(6, 1fr);
 }
 
 .cell div {
@@ -61,6 +67,7 @@
 
 .cell {
     position: relative;
+    cursor: pointer;
 }
 
 .front {
@@ -72,7 +79,7 @@
     align-items: center;
     border: 2px solid #a6a6a6;
     background-color: #f2f2f2;
-    /*transform: rotateY(90deg);*/
+    transform: rotateY(90deg);
 }
 
 .back {
