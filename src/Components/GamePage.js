@@ -94,7 +94,7 @@ function GamePage({ userName, difficulty, onRestart }) {
             <div className="game-info">
                 <div className="intro">
                     <h4>Hey, {userName}!</h4>
-                    <p>score: {score}</p>
+                    <h5>score: {score}</h5>
                 </div>
             </div>
 
