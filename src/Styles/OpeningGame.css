@@ -1,7 +1,8 @@
 
 .welcome {
     font-family: monospace;
-
+    color: deeppink;
+    font-weight: bold;
 }
 
 .opening-game {
@@ -25,6 +26,7 @@
 
 .btn.btn-secondary.btn-lg {
     margin-top: 30px;
+    background-color: deeppink;
 }
 
 
