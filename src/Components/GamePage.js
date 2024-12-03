@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import '../Styles/GamePage.css';
+import Popup from "./Popup";
 
-function GamePage({ userName, difficulty }) {
+function GamePage({ userName, difficulty, onRestart }) {
     const [seconds, setSeconds] = useState(0);
     const [isGameEnded, setIsGameEnded] = useState(false);
     const [cards, setCards] = useState([]);
@@ -14,7 +15,7 @@ function GamePage({ userName, difficulty }) {
         const remainingSeconds = seconds % 60;
         return `${minutes < 10 ? '0' : ''}${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
     };
-    
+
     useEffect(() => {
         if (!isGameEnded) {
             const timer = setInterval(() => setSeconds((prevSeconds) => prevSeconds + 1), 1000);
@@ -59,7 +60,7 @@ function GamePage({ userName, difficulty }) {
 
     const handleCardClick = (id) => {
 
-        if (flippedCards.includes(id) || matchedCards.includes(id)) return; // לא לעשות כלום אם הקלף כבר פתוח או תואם
+        if (flippedCards.includes(id) || matchedCards.includes(id)) return;
 
         if (flippedCards.length === 1) {
             const firstCardId = flippedCards[0];
@@ -86,10 +87,6 @@ function GamePage({ userName, difficulty }) {
         } else {
             setFlippedCards([id]);
         }
-    };
-
-    const endGame = () => {
-        setIsGameEnded(true);
     };
 
     return (
@@ -120,9 +117,7 @@ function GamePage({ userName, difficulty }) {
 
             <div className="timer">{formatTime(seconds)}</div>
 
-            <button onClick={endGame} className="end-button">
-                End Game
-            </button>
+            <Popup trigger={isGameEnded} ></Popup>
         </div>
     );
 }
